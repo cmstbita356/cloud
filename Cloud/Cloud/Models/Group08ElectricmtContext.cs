@@ -26,10 +26,6 @@ public partial class Group08ElectricmtContext : DbContext
 
     public virtual DbSet<TblOrderdetail> TblOrderdetails { get; set; }
 
-    public virtual DbSet<TblReport> TblReports { get; set; }
-
-    public virtual DbSet<TblReportdetail> TblReportdetails { get; set; }
-
     public virtual DbSet<TblTruck> TblTrucks { get; set; }
 
     public virtual DbSet<TblTruckItem> TblTruckItems { get; set; }
@@ -143,40 +139,6 @@ public partial class Group08ElectricmtContext : DbContext
             entity.Property(e => e.ItemId).HasColumnName("item_id");
             entity.Property(e => e.ItemQuantity).HasColumnName("item_quantity");
             entity.Property(e => e.OrderId).HasColumnName("order_id");
-            entity.Property(e => e.Status).HasColumnName("status");
-        });
-
-        modelBuilder.Entity<TblReport>(entity =>
-        {
-            entity.HasKey(e => e.ReportId).HasName("PK__tbl_repo__779B7C580B00DACB");
-
-            entity.ToTable("tbl_report");
-
-            entity.Property(e => e.ReportId)
-                .ValueGeneratedNever()
-                .HasColumnName("report_id");
-            entity.Property(e => e.CompId).HasColumnName("comp_id");
-            entity.Property(e => e.EmplId).HasColumnName("empl_id");
-            entity.Property(e => e.ReportApproved).HasColumnName("report_approved");
-            entity.Property(e => e.ReportDate)
-                .HasColumnType("date")
-                .HasColumnName("report_date");
-            entity.Property(e => e.Status).HasColumnName("status");
-        });
-
-        modelBuilder.Entity<TblReportdetail>(entity =>
-        {
-            entity.HasKey(e => e.EntryId).HasName("PK__tbl_repo__810FDCE1C77339F6");
-
-            entity.ToTable("tbl_reportdetail");
-
-            entity.Property(e => e.EntryId)
-                .ValueGeneratedNever()
-                .HasColumnName("entry_id");
-            entity.Property(e => e.CompId).HasColumnName("comp_id");
-            entity.Property(e => e.ItemId).HasColumnName("item_id");
-            entity.Property(e => e.ItemQuantity).HasColumnName("item_quantity");
-            entity.Property(e => e.ReportId).HasColumnName("report_id");
             entity.Property(e => e.Status).HasColumnName("status");
         });
 
