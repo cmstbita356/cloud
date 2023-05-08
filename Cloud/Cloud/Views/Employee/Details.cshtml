@@ -1,42 +1,90 @@
-﻿@model Cloud.Models.TblEmployee
+﻿@model Cloud.Models.EmployeeTruckItem
 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Info employee and Struck</h1>
 
 <div>
     <hr />
+    <h1 style="text-align: center">Employee Info</h1>
     <dl class="row">
         <dt class = "col-sm-2">
             First Name: 
         </dt>
         <dd class = "col-sm-4">
-            @Html.DisplayFor(model => model.EmplFirstname)
+            @Html.DisplayFor(model => model.Employee.EmplFirstname)
         </dd>
         <dt class = "col-sm-2">
             Last Name: 
         </dt>
         <dd class = "col-sm-4">
-            @Html.DisplayFor(model => model.EmplLastname)
+            @Html.DisplayFor(model => model.Employee.EmplLastname)
         </dd>
         <dt class = "col-sm-2">
             Company Id: 
         </dt>
         <dd class = "col-sm-4">
-            @Html.DisplayFor(model => model.CompId)
+            @Html.DisplayFor(model => model.Employee.CompId)
         </dd>
         <dt class = "col-sm-2">
             Email: 
         </dt>
         <dd class = "col-sm-4">
-            @Html.DisplayFor(model => model.EmplEmail)
+            @Html.DisplayFor(model => model.Employee.EmplEmail)
         </dd>
     </dl>
 </div>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.EmplId">Edit</a> |
+    <hr />
+    <h1 style="text-align: center">Truck Info</h1>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Truck Model:
+        </dt>
+        <dd class="col-sm-4">
+            @Html.DisplayFor(model => model.Truck.TruckModel)
+        </dd>
+        <dt class="col-sm-2">
+            Truck License: 
+        </dt>
+        <dd class="col-sm-4">
+            @Html.DisplayFor(model => model.Truck.TruckLicense)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <h4>Truck Items</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Item's Name
+                </th>
+                <th>
+                    Quantity
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.ListItem)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.item_name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.item_quantity)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
     <a asp-action="Index">Back to List</a>
 </div>

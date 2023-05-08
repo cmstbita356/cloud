@@ -72,7 +72,23 @@ namespace Cloud.Controllers
                                     where emp.EmplId == id
                                     && emp.Status == 1
                                     select emp).SingleOrDefault();
-            return View(employee);
+
+            TblTruck truck = context.TblTrucks.Where(t => t.EmplId == id).SingleOrDefault();
+            List<TruckItemView> ListItem = new List<TruckItemView>();
+
+            var result = context.TblItems
+                            .Join(context.TblTruckItems, i => i.ItemId, t => t.ItemId, (i, t) => new { name = i.ItemName, quantity = t.ItemQuantity })
+                            .Select(ic => new { Item_Name = ic.name, Item_Quantity = ic.quantity});
+
+            foreach (var item in result)
+            {
+                TruckItemView truckitemview = new TruckItemView(item.Item_Name, item.Item_Quantity ?? 0);
+                ListItem.Add(truckitemview);
+            }
+
+
+            EmployeeTruckItem v = new EmployeeTruckItem(employee, truck, ListItem);
+            return View(v);
         }
 
         public IActionResult Delete(int id)
