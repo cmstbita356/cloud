@@ -30,9 +30,14 @@ namespace Cloud.Controllers
             }
         }
 
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-            return View();
+            TblEmployee target = (from emp in context.TblEmployees
+                                  where emp.EmplId == id &&
+                                  emp.Status == 1
+                                  select emp).SingleOrDefault();
+
+            return View(target);
         }
 
         public IActionResult Details()
