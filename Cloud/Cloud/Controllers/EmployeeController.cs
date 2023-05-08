@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Cloud.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Cloud.Controllers
 {
@@ -11,6 +13,24 @@ namespace Cloud.Controllers
         public EmployeeController(Group08ElectricmtContext context)
         {
             this.context = context;
+        }
+
+        public static string HashPassword(string input)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                // Convert the input string to a byte array and compute the hash
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] hashBytes = sha256.ComputeHash(inputBytes);
+
+                // Convert the byte array to a hexadecimal string
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("x2"));
+                }
+                return sb.ToString();
+            }
         }
 
         public IActionResult Index()
@@ -46,6 +66,7 @@ namespace Cloud.Controllers
 
             return View(target);
         }
+
         [HttpPost]
         public IActionResult Edit(TblEmployee employee)
         {
@@ -115,12 +136,42 @@ namespace Cloud.Controllers
 
             v.Status = 0;
             context.SaveChanges();
-            return RedirectToAction("index");
+            return RedirectToAction("Index");
         }
 
         public IActionResult Create()
         {
-            return View();
+            TblEmployee target = (from emp in context.TblEmployees
+                                  where emp.Status == 1
+                                  select emp).SingleOrDefault();
+
+            var maxCompId = context.TblCompanies.Max(c => c.CompId);
+            var minCompId = context.TblCompanies.Min(c => c.CompId);
+
+            ViewBag.MaxCompId = maxCompId;
+            ViewBag.MinCompId = minCompId;
+
+
+            return View(target);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(TblEmployee newemp)
+        {
+            if (ModelState.IsValid)
+            {
+                int empnum = (from emp in context.TblEmployees
+                               select emp).Count();
+                newemp.EmplId = empnum + 1;
+                newemp.Status = 1;
+                newemp.EmplPassword = HashPassword("password");
+
+                context.Add(newemp);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(newemp);
         }
     }
 }

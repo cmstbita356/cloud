@@ -92,7 +92,7 @@ namespace Cloud.Controllers
                 {
                     HttpContext.Session.SetString("email", CompEmail);
                     HttpContext.Session.SetInt32("companyID", result.CompId);
-                    return RedirectToAction("Index", "Employee");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
