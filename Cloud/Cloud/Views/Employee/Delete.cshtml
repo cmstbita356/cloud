@@ -5,54 +5,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Delete</h1>
+<h1>Fire employee</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Are you sure you want to fire this employee?</h3>
 <div>
-    <h4>TblEmployee</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmplFirstname)
+        <dt class="col-sm-2">
+            First Name:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.EmplFirstname)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmplLastname)
+        <dt class="col-sm-2">
+            Last Name:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.EmplLastname)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CompId)
+        <dt class="col-sm-2">
+            Company Id:
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.CompId)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmplPassword)
+        <dt class="col-sm-2">
+            Email:
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EmplPassword)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmplEmail)
-        </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.EmplEmail)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
     </dl>
-    
+
     <form asp-action="Delete">
         <input type="hidden" asp-for="EmplId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <a asp-action="Index">Back to Employee</a>
     </form>
 </div>

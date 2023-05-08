@@ -37,17 +37,63 @@ namespace Cloud.Controllers
                                   emp.Status == 1
                                   select emp).SingleOrDefault();
 
+            var maxCompId = context.TblCompanies.Max(c => c.CompId);
+            var minCompId = context.TblCompanies.Min(c => c.CompId);
+
+            ViewBag.MaxCompId = maxCompId;
+
             return View(target);
         }
+        [HttpPost]
+        public IActionResult Edit(TblEmployee employee)
+        {
+            var existingEmployee = context.TblEmployees.FirstOrDefault(e => e.EmplId == employee.EmplId);
 
+            if (existingEmployee == null)
+            {
+                return NotFound();
+            }
+
+            existingEmployee.EmplFirstname = employee.EmplFirstname;
+            existingEmployee.EmplLastname = employee.EmplLastname;
+            existingEmployee.CompId = employee.CompId;
+            existingEmployee.EmplEmail = employee.EmplEmail;
+
+            context.TblEmployees.Update(existingEmployee);
+            context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
         public IActionResult Details()
         {
             return View();
         }
 
-        public IActionResult Delete()
+        public IActionResult Delete(int id)
         {
-            return View();
+            TblEmployee employee = (from emp in context.TblEmployees
+                                    where emp.EmplId == id
+                                    && emp.Status == 1
+                                    select emp).SingleOrDefault();
+            if (employee == null)
+            {
+                return NotFound();
+            }
+            return View(employee);
+        }
+        [HttpPost]
+        public IActionResult Delete(TblEmployee employee)
+        {
+            var v = context.TblEmployees.FirstOrDefault(e => e.EmplId == employee.EmplId);
+
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            v.Status = 0;
+            context.SaveChanges();
+            return RedirectToAction("index");
         }
     }
 }

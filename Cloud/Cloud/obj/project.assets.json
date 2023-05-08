@@ -10757,19 +10757,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HOME\\.nuget\\packages\\": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ALL_OF_MY_PROJECTS_ARE_IN_HERE\\Web\\cloud\\Cloud\\Cloud\\Cloud.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Desktop\\Github\\cloud6\\Cloud\\Cloud\\Cloud.csproj",
       "projectName": "Cloud",
-      "projectPath": "D:\\ALL_OF_MY_PROJECTS_ARE_IN_HERE\\Web\\cloud\\Cloud\\Cloud\\Cloud.csproj",
-      "packagesPath": "C:\\Users\\HOME\\.nuget\\packages\\",
-      "outputPath": "D:\\ALL_OF_MY_PROJECTS_ARE_IN_HERE\\Web\\cloud\\Cloud\\Cloud\\obj\\",
+      "projectPath": "C:\\Users\\Admin\\Desktop\\Github\\cloud6\\Cloud\\Cloud\\Cloud.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Admin\\Desktop\\Github\\cloud6\\Cloud\\Cloud\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HOME\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10845,7 +10845,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
