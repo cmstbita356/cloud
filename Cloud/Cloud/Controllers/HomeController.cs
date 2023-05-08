@@ -18,32 +18,29 @@ namespace Cloud.Controllers
 
         public IActionResult Index()
         {
-            
+            return RedirectToAction("Login");
+        }
+        public IActionResult Login()
+        {
             return View();
         }
         [HttpPost]
-        public IActionResult Login(Company company)
+        public IActionResult Login(Company companyParam)
         {
             SqlConnection conn = new SqlConnection(connectionString);
-            conn.Open();
+            conn.Open();  
             string query = "select * from tbl_company where comp_email = @email and comp_password = @password";
             List<SqlParameter> listpara = new List<SqlParameter>()
             {
-                new SqlParameter("@email", company.comp_email),
+                new SqlParameter("@email", companyParam.comp_email),
+                new SqlParameter("@password", companyParam.comp_password),
             };
             SqlCommand cmd = new SqlCommand(query, conn);
             cmd.Parameters.AddRange(listpara.ToArray());
             SqlDataReader reader = cmd.ExecuteReader();
-            Company company = new Company();
-            while (reader.Read())
+            if(reader.HasRows)
             {
-
-                product.Id = (int)reader["id"];
-                product.Name = (string)reader["name"];
-                product.Price = (string)reader["price"];
-                product.Img = (string)reader["img"];
-                product.Desc = (string)reader["description"];
-
+                return RedirectToAction("Index", "Truck", companyParam);
             }
             conn.Close();
             return View();

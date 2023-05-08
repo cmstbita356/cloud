@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Cloud.Models.Company
+<h1>Edit</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div class="mb-3">
+                <label asp-for="comp_email" class="control-label">Email: </label>
+                <input asp-for="comp_email" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="comp_password" class="control-label">Password: </label>
+                <input asp-for="comp_password" class="form-control" />
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Save" class="btn btn-primary mt-3" />
+                <a class="btn btn-primary mt-3" asp-action="Index">Back to Product</a>
+            </div>
+        </form>
+    </div>
+</div>
+}
