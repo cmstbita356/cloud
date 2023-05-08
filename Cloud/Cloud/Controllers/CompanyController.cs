@@ -2,13 +2,8 @@
 using System.Reflection.Metadata.Ecma335;
 using Cloud.Models;
 using NuGet.DependencyResolver;
-<<<<<<< Updated upstream
 using System.Text;
 using System.Security.Cryptography;
-=======
-using System.Security.Cryptography;
-using System.Text;
->>>>>>> Stashed changes
 
 namespace Cloud.Controllers
 {
@@ -21,12 +16,22 @@ namespace Cloud.Controllers
             this.context = context;
         }
 
-        public static string HashPassword(string password)
+        public static string HashPassword(string input)
         {
-            byte[] bytes = Encoding.UTF8.GetBytes(password);
-            SHA256Managed sha256 = new SHA256Managed();
-            byte[] hash = sha256.ComputeHash(bytes);
-            return Convert.ToBase64String(hash);
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                // Convert the input string to a byte array and compute the hash
+                byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+                byte[] hashBytes = sha256.ComputeHash(inputBytes);
+
+                // Convert the byte array to a hexadecimal string
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("x2"));
+                }
+                return sb.ToString();
+            }
         }
 
         //GET
@@ -35,16 +40,6 @@ namespace Cloud.Controllers
             return View();
         }
 
-<<<<<<< Updated upstream
-
-        private string HashPassword(string password)
-        {
-            byte[] bytes = Encoding.UTF8.GetBytes(password);
-            SHA256Managed sha256 = new SHA256Managed();
-            byte[] hash = sha256.ComputeHash(bytes);
-            return Convert.ToBase64String(hash);
-        }
-=======
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -65,46 +60,40 @@ namespace Cloud.Controllers
             return View(newcomp);
         }
 
->>>>>>> Stashed changes
-        //GET account info from login page
-        [HttpGet]
-        [ValidateAntiForgeryToken]
-        public IActionResult Login(TblCompany company)
+        public IActionResult Login()
         {
-            TblCompany result = (from comp in context.TblCompanies
-                                 where company.CompEmail == comp.CompEmail
-                                 select comp).SingleOrDefault();
-            if(result == null)
-                ModelState.AddModelError("CompEmail", "Email không đúng");
-
+            byte[] value = null;
+            if (HttpContext.Session.TryGetValue("username", out value))
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Verify(TblCompany company)
+        public IActionResult Login(string CompEmail, string CompPassword)
         {
-
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             TblCompany result = (from comp in context.TblCompanies
-                               where company.CompEmail == comp.CompEmail
-                                     && company.CompPassword == comp.CompPassword
-                               select comp).SingleOrDefault();
-#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-
+                                 where comp.CompEmail == CompEmail
+                                 select comp).SingleOrDefault();
             if (result == null)
-            {
-                return View("Error");
-            }
-            else
-            {
-                return Index(company.CompId);
-            }
-        }
+                ModelState.AddModelError("CompEmail", "Email không đúng");
 
-        public IActionResult Index(int CompId)
-        {
-            return View(CompId);
+            if (ModelState.IsValid)
+            {
+
+                if (result.CompPassword.Equals(HashPassword(CompPassword)))
+                {
+                    HttpContext.Session.SetString("email", CompEmail);
+                    return RedirectToAction("Index", "Staff");
+                }
+                else
+                {
+                    ModelState.AddModelError("CompPassword", HashPassword(CompPassword));
+                }
+            }
+            return View();
         }
     }
 }

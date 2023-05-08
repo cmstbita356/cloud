@@ -28,4 +28,8 @@ public partial class TblCompany
         CompPassword = compPassword;
         Status = status;
     }
+
+    public TblCompany()
+    {
+    }
 }
