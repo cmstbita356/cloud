@@ -2,6 +2,8 @@
 using System.Reflection.Metadata.Ecma335;
 using Cloud.Models;
 using NuGet.DependencyResolver;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace Cloud.Controllers
 {
@@ -24,14 +26,23 @@ namespace Cloud.Controllers
             return View();
         }
 
+
+        private string HashPassword(string password)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(password);
+            SHA256Managed sha256 = new SHA256Managed();
+            byte[] hash = sha256.ComputeHash(bytes);
+            return Convert.ToBase64String(hash);
+        }
         //GET account info from login page
         [HttpGet]
         public IActionResult Login(TblCompany company)
         {
             TblCompany result = (from comp in context.TblCompanies
                                  where company.CompEmail == comp.CompEmail
-                                       && company.CompPassword == comp.CompPassword
                                  select comp).SingleOrDefault();
+            if(result == null)
+                ModelState.AddModelError("CompEmail", "Email không đúng");
 
             return View();
         }
