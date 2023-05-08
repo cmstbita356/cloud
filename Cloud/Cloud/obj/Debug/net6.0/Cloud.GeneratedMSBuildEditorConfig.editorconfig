@@ -15,12 +15,20 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\ALL_OF_MY_PROJECTS_ARE_IN_HERE\Web\cloud\Cloud\Cloud
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/ALL_OF_MY_PROJECTS_ARE_IN_HERE/Web/cloud/Cloud/Cloud/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[D:/ALL_OF_MY_PROJECTS_ARE_IN_HERE/Web/cloud/Cloud/Cloud/Views/Company/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/ALL_OF_MY_PROJECTS_ARE_IN_HERE/Web/cloud/Cloud/Cloud/Views/Home/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
+[D:/ALL_OF_MY_PROJECTS_ARE_IN_HERE/Web/cloud/Cloud/Cloud/Views/Company/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ALL_OF_MY_PROJECTS_ARE_IN_HERE/Web/cloud/Cloud/Cloud/Views/Company/SignUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcGFueVxTaWduVXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/ALL_OF_MY_PROJECTS_ARE_IN_HERE/Web/cloud/Cloud/Cloud/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/ALL_OF_MY_PROJECTS_ARE_IN_HERE/Web/cloud/Cloud/Cloud/Views/Home/Privacy.cshtml]

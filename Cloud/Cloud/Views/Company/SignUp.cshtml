@@ -1,0 +1,29 @@
+﻿@model Cloud.Models.TblCompany
+
+<h1>Register an account</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="mb-3">
+                <input asp-for="CompName" class="form-control" placeholder="Company name" />
+                <span asp-validation-for="CompName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input asp-for="CompPhone" class="form-control" placeholder="Company phone number" />
+                <span asp-validation-for="CompPhone" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input asp-for="CompEmail" class="form-control" placeholder="Email" />
+                <span asp-validation-for="CompEmail" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input asp-for="CompPassword" class="form-control" placeholder="Password" />
+                <span asp-validation-for="CompPassword" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Register" class="btn btn-primary mt-3"/>
+            </div>
+        </form>
+    </div>
+</div>

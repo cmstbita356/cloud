@@ -18,12 +18,14 @@ namespace Cloud.Controllers
 
         public IActionResult Index()
         {
-            return RedirectToAction("Login");
+            return View();
         }
+
         public IActionResult Login()
         {
             return View();
         }
+
         //[HttpPost]
         //public IActionResult Login(TblCompany companyParam)
         //{
