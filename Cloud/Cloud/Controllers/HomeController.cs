@@ -7,13 +7,13 @@ namespace Cloud.Controllers
 {
     public class HomeController : Controller
     {
-        readonly string connectionString = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build().GetSection("ConnectionStrings")["DefaultConnection"];
-
         private readonly ILogger<HomeController> _logger;
+        private readonly Group08ElectricmtContext group08ElectricmtContext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, Group08ElectricmtContext context)
         {
             _logger = logger;
+            this.group08ElectricmtContext = context;
         }
 
         public IActionResult Index()
@@ -24,27 +24,27 @@ namespace Cloud.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult Login(Company companyParam)
-        {
-            SqlConnection conn = new SqlConnection(connectionString);
-            conn.Open();  
-            string query = "select * from tbl_company where comp_email = @email and comp_password = @password";
-            List<SqlParameter> listpara = new List<SqlParameter>()
-            {
-                new SqlParameter("@email", companyParam.comp_email),
-                new SqlParameter("@password", companyParam.comp_password),
-            };
-            SqlCommand cmd = new SqlCommand(query, conn);
-            cmd.Parameters.AddRange(listpara.ToArray());
-            SqlDataReader reader = cmd.ExecuteReader();
-            if(reader.HasRows)
-            {
-                return RedirectToAction("Index", "Truck", companyParam);
-            }
-            conn.Close();
-            return View();
-        }
+        //[HttpPost]
+        //public IActionResult Login(TblCompany companyParam)
+        //{
+        //    SqlConnection conn = new SqlConnection(connectionString);
+        //    conn.Open();  
+        //    string query = "select * from tbl_company where comp_email = @email and comp_password = @password";
+        //    List<SqlParameter> listpara = new List<SqlParameter>()
+        //    {
+        //        new SqlParameter("@email", companyParam.CompEmail),
+        //        new SqlParameter("@password", companyParam.CompPassword),
+        //    };
+        //    SqlCommand cmd = new SqlCommand(query, conn);
+        //    cmd.Parameters.AddRange(listpara.ToArray());
+        //    SqlDataReader reader = cmd.ExecuteReader();
+        //    if(reader.HasRows)
+        //    {
+        //        return RedirectToAction("Index", "Truck", companyParam);
+        //    }
+        //    conn.Close();
+        //    return View();
+        //}
 
         public IActionResult Privacy()
         {

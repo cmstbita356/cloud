@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\cloud\\Cloud\\Cloud\\Cloud.csproj": {}
+    "D:\\ALL_OF_MY_PROJECTS_ARE_IN_HERE\\Web\\cloud\\Cloud\\Cloud\\Cloud.csproj": {}
   },
   "projects": {
-    "D:\\cloud\\Cloud\\Cloud\\Cloud.csproj": {
+    "D:\\ALL_OF_MY_PROJECTS_ARE_IN_HERE\\Web\\cloud\\Cloud\\Cloud\\Cloud.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\cloud\\Cloud\\Cloud\\Cloud.csproj",
+        "projectUniqueName": "D:\\ALL_OF_MY_PROJECTS_ARE_IN_HERE\\Web\\cloud\\Cloud\\Cloud\\Cloud.csproj",
         "projectName": "Cloud",
-        "projectPath": "D:\\cloud\\Cloud\\Cloud\\Cloud.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\cloud\\Cloud\\Cloud\\obj\\",
+        "projectPath": "D:\\ALL_OF_MY_PROJECTS_ARE_IN_HERE\\Web\\cloud\\Cloud\\Cloud\\Cloud.csproj",
+        "packagesPath": "C:\\Users\\HOME\\.nuget\\packages\\",
+        "outputPath": "D:\\ALL_OF_MY_PROJECTS_ARE_IN_HERE\\Web\\cloud\\Cloud\\Cloud\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HOME\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +40,32 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Core": {
+              "target": "Package",
+              "version": "[6.0.13, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.13, )"
+            },
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.5, )"
