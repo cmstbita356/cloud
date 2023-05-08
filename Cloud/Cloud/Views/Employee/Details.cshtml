@@ -5,47 +5,34 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Info employee and Struck</h1>
 
 <div>
-    <h4>TblEmployee</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmplFirstname)
+            First Name: 
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-4">
             @Html.DisplayFor(model => model.EmplFirstname)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmplLastname)
+            Last Name: 
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-4">
             @Html.DisplayFor(model => model.EmplLastname)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CompId)
+            Company Id: 
         </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-4">
             @Html.DisplayFor(model => model.CompId)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmplPassword)
+            Email: 
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EmplPassword)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.EmplEmail)
-        </dt>
-        <dd class = "col-sm-10">
+        <dd class = "col-sm-4">
             @Html.DisplayFor(model => model.EmplEmail)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Status)
         </dd>
     </dl>
 </div>
