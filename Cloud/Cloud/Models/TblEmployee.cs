@@ -29,4 +29,6 @@ public partial class TblEmployee
         EmplEmail = emplEmail;
         Status = status;
     }
+
+
 }

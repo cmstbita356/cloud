@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -27,12 +29,26 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item align-content-end">
-                            <a id="loginButton" class="nav-link text-dark" asp-area="" asp-controller="Company" asp-action="Login">Login</a>
-                        </li>
-                        <li class="nav-item align-content-end">
-                            <a id="registerButton" class="nav-link text-dark" asp-area="" asp-controller="Company" asp-action="SignUp">Register</a>
-                        </li>
+                        @if (HttpContextAccessor.HttpContext.Session.GetString("email") == null)
+                        {
+                            <li class="nav-item align-content-end">
+                                <a id="loginButton" class="nav-link text-dark" asp-area="" asp-controller="Company" asp-action="Login">Login</a>
+                            </li>
+                            <li class="nav-item align-content-end">
+                                <a id="registerButton" class="nav-link text-dark" asp-area="" asp-controller="Company" asp-action="SignUp">Register</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item align-content-end">
+                                <a class="nav-link text-dark">Welcome, @HttpContextAccessor.HttpContext.Session.GetString("email")!</a>
+                            </li>
+                            <li class="nav-item align-content-end">
+                                <form asp-controller="Company" asp-action="Logout" method="post">
+                                    <button type="submit" class="nav-link btn btn-link text-dark" style="padding: 0; border: none; background-color: inherit;">Logout</button>
+                                </form>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

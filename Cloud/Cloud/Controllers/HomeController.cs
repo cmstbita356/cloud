@@ -18,7 +18,7 @@ namespace Cloud.Controllers
 
         public IActionResult Index()
         {
-            return RedirectToAction("Login", "Company");
+            return View();
         }
 
         public IActionResult Login()

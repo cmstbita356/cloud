@@ -34,6 +34,8 @@ namespace Cloud.Controllers
             }
         }
 
+        // ----------------- SIGN UP ---------------------
+
         //GET
         public IActionResult SignUp()
         {
@@ -60,10 +62,12 @@ namespace Cloud.Controllers
             return View(newcomp);
         }
 
+        // ----------------- LOG IN ---------------------
+
         public IActionResult Login()
         {
             byte[] value = null;
-            if (HttpContext.Session.TryGetValue("username", out value))
+            if (HttpContext.Session.TryGetValue("email", out value))
             {
                 return RedirectToAction("Index", "Home");
             }
