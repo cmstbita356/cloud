@@ -41,6 +41,8 @@ namespace Cloud.Controllers
             var minCompId = context.TblCompanies.Min(c => c.CompId);
 
             ViewBag.MaxCompId = maxCompId;
+            ViewBag.MinCompId = minCompId;
+
 
             return View(target);
         }
@@ -64,9 +66,13 @@ namespace Cloud.Controllers
 
             return RedirectToAction("Index");
         }
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            return View();
+            TblEmployee employee = (from emp in context.TblEmployees
+                                    where emp.EmplId == id
+                                    && emp.Status == 1
+                                    select emp).SingleOrDefault();
+            return View(employee);
         }
 
         public IActionResult Delete(int id)
