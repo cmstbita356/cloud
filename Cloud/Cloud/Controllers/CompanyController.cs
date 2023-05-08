@@ -2,8 +2,13 @@
 using System.Reflection.Metadata.Ecma335;
 using Cloud.Models;
 using NuGet.DependencyResolver;
+<<<<<<< Updated upstream
 using System.Text;
 using System.Security.Cryptography;
+=======
+using System.Security.Cryptography;
+using System.Text;
+>>>>>>> Stashed changes
 
 namespace Cloud.Controllers
 {
@@ -16,16 +21,21 @@ namespace Cloud.Controllers
             this.context = context;
         }
 
+        public static string HashPassword(string password)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(password);
+            SHA256Managed sha256 = new SHA256Managed();
+            byte[] hash = sha256.ComputeHash(bytes);
+            return Convert.ToBase64String(hash);
+        }
+
+        //GET
         public IActionResult SignUp()
         {
-            byte[] value = null;
-            if (HttpContext.Session.TryGetValue("username", out value))
-            {
-                return RedirectToAction("Index", "Home");
-            }
             return View();
         }
 
+<<<<<<< Updated upstream
 
         private string HashPassword(string password)
         {
@@ -34,8 +44,31 @@ namespace Cloud.Controllers
             byte[] hash = sha256.ComputeHash(bytes);
             return Convert.ToBase64String(hash);
         }
+=======
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SignUp(TblCompany newcomp)
+        {
+            if (ModelState.IsValid)
+            {
+                int compnum = (from comp in context.TblCompanies
+                               select comp).Count();
+                newcomp.CompId = compnum + 1;
+                newcomp.Status = 1;
+                newcomp.CompPassword = HashPassword(newcomp.CompPassword);
+
+                context.Add(newcomp);
+                context.SaveChanges();
+                return RedirectToAction("Login");
+            }
+            return View(newcomp);
+        }
+
+>>>>>>> Stashed changes
         //GET account info from login page
         [HttpGet]
+        [ValidateAntiForgeryToken]
         public IActionResult Login(TblCompany company)
         {
             TblCompany result = (from comp in context.TblCompanies
