@@ -95,5 +95,10 @@ namespace Cloud.Controllers
             context.SaveChanges();
             return RedirectToAction("index");
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }

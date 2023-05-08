@@ -1,0 +1,61 @@
+﻿@model Cloud.Models.TblEmployee
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>TblEmployee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EmplId" class="control-label"></label>
+                <input asp-for="EmplId" class="form-control" />
+                <span asp-validation-for="EmplId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmplFirstname" class="control-label"></label>
+                <input asp-for="EmplFirstname" class="form-control" />
+                <span asp-validation-for="EmplFirstname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmplLastname" class="control-label"></label>
+                <input asp-for="EmplLastname" class="form-control" />
+                <span asp-validation-for="EmplLastname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CompId" class="control-label"></label>
+                <input asp-for="CompId" class="form-control" />
+                <span asp-validation-for="CompId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmplPassword" class="control-label"></label>
+                <input asp-for="EmplPassword" class="form-control" />
+                <span asp-validation-for="EmplPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmplEmail" class="control-label"></label>
+                <input asp-for="EmplEmail" class="form-control" />
+                <span asp-validation-for="EmplEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
