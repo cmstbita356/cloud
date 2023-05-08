@@ -4,6 +4,7 @@ using Cloud.Models;
 using NuGet.DependencyResolver;
 using System.Text;
 using System.Security.Cryptography;
+using Microsoft.EntityFrameworkCore.Update;
 
 namespace Cloud.Controllers
 {
@@ -80,7 +81,7 @@ namespace Cloud.Controllers
         {
             TblCompany result = (from comp in context.TblCompanies
                                  where comp.CompEmail == CompEmail
-                                 select comp).SingleOrDefault();
+                                 && comp.Status == 1 select comp).SingleOrDefault();
             if (result == null)
                 ModelState.AddModelError("CompEmail", "Email không đúng");
 
@@ -90,7 +91,8 @@ namespace Cloud.Controllers
                 if (result.CompPassword.Equals(HashPassword(CompPassword)))
                 {
                     HttpContext.Session.SetString("email", CompEmail);
-                    return RedirectToAction("Index", "Staff");
+                    HttpContext.Session.SetInt32("companyID", result.CompId);
+                    return RedirectToAction("Index", "Employee");
                 }
                 else
                 {

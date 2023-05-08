@@ -1,0 +1,55 @@
+﻿@model List<TblEmployee>
+
+@{
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Employees</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmplFirstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmplLastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmplEmail)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EmplId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EmplId">Info</a> |
+                <a asp-action="Delete" asp-route-id="@item.EmplId">Fire</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>
