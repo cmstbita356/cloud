@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Cloud.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.Design;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -97,9 +98,16 @@ namespace Cloud.Controllers
             TblTruck truck = context.TblTrucks.Where(t => t.EmplId == id).SingleOrDefault();
             List<TruckItemView> ListItem = new List<TruckItemView>();
 
-            var result = context.TblItems
-                            .Join(context.TblTruckItems, i => i.ItemId, t => t.ItemId, (i, t) => new { name = i.ItemName, quantity = t.ItemQuantity })
-                            .Select(ic => new { Item_Name = ic.name, Item_Quantity = ic.quantity});
+            int companyID = Convert.ToInt32(HttpContext.Session.GetInt32("companyID"));
+            var result = (from i in context.TblItems
+                          join t in context.TblTruckItems
+            on i.ItemId equals t.ItemId
+                          where i.CompId == companyID && t.TruckId == truck.TruckId
+                          select new
+                          {
+                              Item_Name = i.ItemName,
+                              Item_Quantity = t.ItemQuantity
+                          });
 
             foreach (var item in result)
             {
