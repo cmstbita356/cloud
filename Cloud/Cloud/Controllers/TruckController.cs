@@ -56,10 +56,5 @@ namespace Cloud.Controllers
             }
             return View(newtruck);
         }
-
-        public IActionResult Edit()
-        {
-
-        }
     }
 }

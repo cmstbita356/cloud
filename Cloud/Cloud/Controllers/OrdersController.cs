@@ -19,11 +19,21 @@ namespace Cloud.Controllers
         }
 
         // GET: Orders
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-              return _context.TblOrders != null ? 
-                          View(await _context.TblOrders.ToListAsync()) :
-                          Problem("Entity set 'Group08ElectricmtContext.TblOrders'  is null.");
+            if (HttpContext.Session.GetString("email") == null)
+            {
+                return RedirectToAction("Login", "Company");
+            }
+            else
+            {
+
+                int companyID = Convert.ToInt32(HttpContext.Session.GetInt32("companyID"));
+
+                List<TblOrder> listOrd = _context.TblOrders.Where(emp => emp.Status == 1 && emp.CompId == companyID).Select(emp => emp).ToList();
+
+                return View(listOrd);
+            }
         }
 
         // GET: Orders/Details/5
@@ -55,7 +65,7 @@ namespace Cloud.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(TblOrder neworder)
+        public IActionResult Create(TblOrder neworder)
         {
             if (ModelState.IsValid)
             {
@@ -65,68 +75,23 @@ namespace Cloud.Controllers
                 neworder.ReportId = ordnum + 1;
                 neworder.CompId = HttpContext.Session.GetInt32("companyID");
                 neworder.OrderDelivered = 1;
-                neworder.OrderDate = DateTime.Today;
+                neworder.OrderDate = DateTime.Now;
                 neworder.Status = 1;
 
-                HttpContext.Session.SetInt32("orderID", ordnum);
-
                 _context.Add(neworder);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                _context.SaveChangesAsync();
+
+                int ordnumnew = (from ord in _context.TblOrders
+                                 select ord).Count();
+
+                if ((ordnumnew = ordnum) != 1)
+                {
+                    HttpContext.Session.SetInt32("orderID", ordnum);
+                }
+                else return RedirectToAction(nameof(Index));
             }
 
             return View(neworder);
-        }
-
-        // GET: Orders/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.TblOrders == null)
-            {
-                return NotFound();
-            }
-
-            var tblOrder = await _context.TblOrders.FindAsync(id);
-            if (tblOrder == null)
-            {
-                return NotFound();
-            }
-            return View(tblOrder);
-        }
-
-        // POST: Orders/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ReportId,CompId,OrderDelivered,OrderDate,Status")] TblOrder tblOrder)
-        {
-            if (id != tblOrder.ReportId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(tblOrder);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TblOrderExists(tblOrder.ReportId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(tblOrder);
         }
 
         // GET: Orders/Delete/5

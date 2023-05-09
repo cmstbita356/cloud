@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Create a new order</h1>
+<h1>Manage your orders</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -14,16 +14,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CompId)
+                Company ID
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderDelivered)
+                Delivered
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.OrderDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
+                Place date
             </th>
             <th></th>
         </tr>
@@ -41,11 +38,6 @@
                 @Html.DisplayFor(modelItem => item.OrderDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ReportId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ReportId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.ReportId">Delete</a>
             </td>
         </tr>

@@ -71,10 +71,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJkZXRhaWxzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/ALL_OF_MY_PROJECTS_ARE_IN_HERE/Web/cloud/Cloud/Cloud/Views/Orderdetails/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJkZXRhaWxzXEVkaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/ALL_OF_MY_PROJECTS_ARE_IN_HERE/Web/cloud/Cloud/Cloud/Views/Orderdetails/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJkZXRhaWxzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -89,10 +85,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/ALL_OF_MY_PROJECTS_ARE_IN_HERE/Web/cloud/Cloud/Cloud/Views/Orders/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXERldGFpbHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/ALL_OF_MY_PROJECTS_ARE_IN_HERE/Web/cloud/Cloud/Cloud/Views/Orders/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/ALL_OF_MY_PROJECTS_ARE_IN_HERE/Web/cloud/Cloud/Cloud/Views/Orders/Index.cshtml]
