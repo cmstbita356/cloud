@@ -75,7 +75,6 @@ namespace Cloud.Controllers
                 }
                 else
                 {
-                    HttpContext.Session.SetString("noorder", "Please create an order first");
                     return RedirectToAction("Create", "Orders");
                 }
             }
