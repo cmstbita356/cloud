@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Company's Trucks</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -14,47 +14,36 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TruckModel)
+                Truck Model
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TruckLicense)
+                Truck License
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EmplId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CompId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
+                Employee Id
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.TruckModel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TruckLicense)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmplId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CompId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.TruckId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.TruckId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.TruckId">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TruckModel)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TruckLicense)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmplId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TruckId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.TruckId">Add Tool</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TruckId">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

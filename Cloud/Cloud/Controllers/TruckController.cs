@@ -56,5 +56,30 @@ namespace Cloud.Controllers
             }
             return View(newtruck);
         }
+
+        public IActionResult Delete(int id)
+        {
+            TblTruck truck = context.TblTrucks.Where(t => t.TruckId == id).SingleOrDefault();
+            if (truck == null)
+            {
+                return NotFound();
+            }
+            return View(truck);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(TblTruck truck)
+        {
+            var v = context.TblTrucks.FirstOrDefault(e => e.TruckId == truck.TruckId);
+
+            if (v == null)
+            {
+                return NotFound();
+            }
+
+            v.Status = 0;
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

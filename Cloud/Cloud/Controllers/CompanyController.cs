@@ -102,5 +102,13 @@ namespace Cloud.Controllers
             }
             return View();
         }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("email");
+            HttpContext.Session.Remove("companyID");
+            HttpContext.Session.Remove("noorder");
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
