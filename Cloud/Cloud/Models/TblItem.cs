@@ -23,4 +23,8 @@ public partial class TblItem
         CompId = compId;
         Status = status;
     }
+
+    public TblItem()
+    {
+    }
 }

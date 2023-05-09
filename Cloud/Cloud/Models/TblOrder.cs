@@ -23,4 +23,8 @@ public partial class TblOrder
         OrderDate = orderDate;
         Status = status;
     }
+
+    public TblOrder()
+    {
+    }
 }

@@ -26,4 +26,8 @@ public partial class TblOrderdetail
         CompId = compId;
         Status = status;
     }
+
+    public TblOrderdetail()
+    {
+    }
 }

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Order</h1>
+<h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -14,13 +14,16 @@
     <thead>
         <tr>
             <th>
-                Order Id
+                @Html.DisplayNameFor(model => model.CompId)
             </th>
             <th>
-                Order Delevery
+                @Html.DisplayNameFor(model => model.OrderDelivered)
             </th>
             <th>
-                Order Date
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
             </th>
             <th></th>
         </tr>
@@ -29,7 +32,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ReportId)
+                @Html.DisplayFor(modelItem => item.CompId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.OrderDelivered)
@@ -38,7 +41,12 @@
                 @Html.DisplayFor(modelItem => item.OrderDate)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ReportId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.ReportId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ReportId">Delete</a>
             </td>
         </tr>
 }
