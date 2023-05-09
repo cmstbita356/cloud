@@ -30,5 +30,7 @@ public partial class TblEmployee
         Status = status;
     }
 
-
+    public TblEmployee()
+    {
+    }
 }

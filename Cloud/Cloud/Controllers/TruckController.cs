@@ -29,6 +29,14 @@ namespace Cloud.Controllers
             }
         }
 
+        public IActionResult Create()
+        {
+            TblEmployee emp = new TblEmployee();
+            var employees = context.TblEmployees.Where(c => c.CompId == HttpContext.Session.GetInt32("companyID")).ToList();
+
+            return View(employees);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(TblTruck newtruck)
@@ -38,8 +46,9 @@ namespace Cloud.Controllers
                 int trucknum = (from truck in context.TblEmployees
                               select truck).Count();
 
-                newtruck.EmplId = trucknum + 1;
+                newtruck.TruckId = trucknum + 1;
                 newtruck.Status = 1;
+                newtruck.CompId = HttpContext.Session.GetInt32("companyID");
 
                 context.Add(newtruck);
                 context.SaveChanges();

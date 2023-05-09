@@ -26,4 +26,8 @@ public partial class TblTruck
         CompId = compId;
         Status = status;
     }
+
+    public TblTruck()
+    {
+    }
 }

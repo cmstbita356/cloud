@@ -149,18 +149,7 @@ namespace Cloud.Controllers
 
         public IActionResult Create()
         {
-            TblEmployee target = (from emp in context.TblEmployees
-                                  where emp.Status == 1
-                                  select emp).SingleOrDefault();
-
-            var maxCompId = context.TblCompanies.Max(c => c.CompId);
-            var minCompId = context.TblCompanies.Min(c => c.CompId);
-
-            ViewBag.MaxCompId = maxCompId;
-            ViewBag.MinCompId = minCompId;
-
-
-            return View(target);
+            return View();
         }
 
         [HttpPost]
@@ -171,9 +160,11 @@ namespace Cloud.Controllers
             {
                 int empnum = (from emp in context.TblEmployees
                                select emp).Count();
+
                 newemp.EmplId = empnum + 1;
                 newemp.Status = 1;
                 newemp.EmplPassword = HashPassword("password");
+                newemp.CompId = HttpContext.Session.GetInt32("companyID");
 
                 context.Add(newemp);
                 context.SaveChanges();

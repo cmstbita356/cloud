@@ -52,6 +52,7 @@ namespace Cloud.Controllers
             {
                 int compnum = (from comp in context.TblCompanies
                                select comp).Count();
+
                 newcomp.CompId = compnum + 1;
                 newcomp.Status = 1;
                 newcomp.CompPassword = HashPassword(newcomp.CompPassword);
